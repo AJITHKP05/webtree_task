@@ -11,7 +11,7 @@ import 'package:webtree_task/presentation/pages/home%20page/home_page.dart';
 import '../../../core/bloc pattern/detail_cubit/detail_cubit.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({super.key, required this.city});
+  const DetailPage({super.key, required this.city});
   final String city;
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -33,7 +33,7 @@ class _DetailPageState extends State<DetailPage> {
         elevation: 5,
         title: InkWell(
             onTap: () {
-              Get.off(() => HomePage());
+              Get.off(() => const HomePage());
             },
             child: const Text(
               "change location",
@@ -59,7 +59,7 @@ class _DetailPageState extends State<DetailPage> {
               if (state is DetailLoading) {
                 return SizedBox(
                   height: size.height * .8,
-                  child: Center(
+                  child: const Center(
                       child: SpinKitHourGlass(color: AppColors.appPremium)),
                 );
               }

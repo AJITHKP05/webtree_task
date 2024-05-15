@@ -29,7 +29,6 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
   onSelected(String data) {
     selectedCity = data;
     cont.text = data;
-    print(data);
     emit(WeatherCubitCitySelected());
   }
 }

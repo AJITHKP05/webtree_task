@@ -9,7 +9,7 @@ import '../../../core/bloc pattern/detail_cubit/detail_cubit.dart';
 import '../../common widgets/profile_avatar.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
