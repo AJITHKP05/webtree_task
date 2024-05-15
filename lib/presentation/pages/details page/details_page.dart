@@ -9,6 +9,7 @@ import 'package:webtree_task/presentation/models/weather.dart';
 import 'package:webtree_task/presentation/pages/home%20page/home_page.dart';
 
 import '../../../core/bloc pattern/detail_cubit/detail_cubit.dart';
+import '../../common widgets/divider.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key, required this.city});
@@ -76,224 +77,13 @@ class _DetailPageState extends State<DetailPage> {
                 return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: size.height * 0.03,
-                        ),
-                        child: Align(
-                          child: Text(
-                            widget.city,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: size.height * 0.06,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: size.height * 0.005,
-                        ),
-                        child: Align(
-                          child: Text(
-                            'Today', //day
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 28.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: size.height * 0.03,
-                        ),
-                        child: Align(
-                          child: Text(
-                            '${data.temp}˚C', //curent temperature
-                            style: TextStyle(
-                              color: currTemp <= 0
-                                  ? Colors.blue
-                                  : currTemp > 0 && currTemp <= 15
-                                      ? Colors.indigo
-                                      : currTemp > 15 && currTemp < 30
-                                          ? Colors.deepPurple
-                                          : Colors.pink,
-                              fontSize: 35.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size.width * 0.25),
-                        child: const Divider(
-                          color: Colors.black,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: size.height * 0.005,
-                        ),
-                        child: Align(
-                          child: Text(
-                            'Sunny', // weather
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 20.sp,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: size.height * 0.03,
-                          bottom: size.height * 0.01,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '$minTemp˚C', // min temperature
-                              style: TextStyle(
-                                color: minTemp <= 0
-                                    ? Colors.blue
-                                    : minTemp > 0 && minTemp <= 15
-                                        ? Colors.indigo
-                                        : minTemp > 15 && minTemp < 30
-                                            ? Colors.deepPurple
-                                            : Colors.pink,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Text(
-                              '/',
-                              style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Text(
-                              '$maxTemp˚C', //max temperature
-                              style: TextStyle(
-                                color: maxTemp <= 0
-                                    ? Colors.blue
-                                    : maxTemp > 0 && maxTemp <= 15
-                                        ? Colors.indigo
-                                        : maxTemp > 15 && maxTemp < 30
-                                            ? Colors.deepPurple
-                                            : Colors.pink,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(size.width * 0.025),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "now",
-                              style: TextStyle(
-                                color: Colors.blueGrey,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.005,
-                                  ),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.solidSun,
-                                    color: Colors.black,
-                                    size: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '$currTemp˚C',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.01,
-                                  ),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.wind,
-                                    color: Colors.black,
-                                    size: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '$wind km/h',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.01,
-                                  ),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.directions,
-                                    color: Colors.black,
-                                    size: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '$windDirection ˚  ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.01,
-                                  ),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.thermometer,
-                                    color: Colors.black,
-                                    size: 20.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '$humidity g/m3 ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
+                      cityName(widget.city),
+                      dateWidget(),
+                      tempWidget(currTemp),
+                      const DividerWidget(),
+                      condtionWidget("sunny"),
+                      detailWidget(windDirection, humidity, currTemp, maxTemp,
+                          minTemp, wind),
                     ]);
               }
               return SizedBox(
@@ -318,6 +108,190 @@ class _DetailPageState extends State<DetailPage> {
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+
+  cityName(String city) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 4.sp,
+      ),
+      child: Align(
+        child: Text(
+          city,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 32.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  dateWidget() {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 5.sp,
+      ),
+      child: Align(
+        child: Text(
+          'Today', //day
+          style: TextStyle(
+            color: Colors.black54,
+            fontSize: 28.sp,
+          ),
+        ),
+      ),
+    );
+  }
+
+  tempWidget(int currTemp) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 4.sp,
+      ),
+      child: Align(
+        child: Text(
+          '$currTemp˚C', //curent temperature
+          style: TextStyle(
+            color: currTemp <= 0
+                ? Colors.blue
+                : currTemp > 0 && currTemp <= 15
+                    ? Colors.indigo
+                    : currTemp > 15 && currTemp < 30
+                        ? Colors.deepPurple
+                        : Colors.pink,
+            fontSize: 35.sp,
+          ),
+        ),
+      ),
+    );
+  }
+
+  condtionWidget(String condtion) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 5.sp,
+      ),
+      child: Align(
+        child: Text(
+          condtion, // weather
+          style: TextStyle(
+            color: Colors.black54,
+            fontSize: 20.sp,
+          ),
+        ),
+      ),
+    );
+  }
+
+  detailWidget(int windDirection, int humidity, int currTemp, int maxTemp,
+      int minTemp, double wind) {
+    return Column(
+      children: [
+        tempDiffWidget(maxTemp, minTemp),
+        Padding(
+          padding: EdgeInsets.all(3.sp),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              displayText("now"),
+              displayIcon(FontAwesomeIcons.solidSun),
+              displayText("$currTemp˚C"),
+              displayIcon(
+                FontAwesomeIcons.wind,
+              ),
+              displayText('$wind km/h'),
+              displayIcon(
+                FontAwesomeIcons.directions,
+              ),
+              displayText(
+                '$windDirection ˚  ',
+              ),
+              displayIcon(
+                FontAwesomeIcons.thermometer,
+              ),
+              displayText(
+                '$humidity g/m3 ',
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  tempDiffWidget(int maxTemp, int minTemp) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 10.sp,
+        bottom: 1.sp,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '$minTemp˚C', // min temperature
+            style: TextStyle(
+              color: minTemp <= 0
+                  ? Colors.blue
+                  : minTemp > 0 && minTemp <= 15
+                      ? Colors.indigo
+                      : minTemp > 15 && minTemp < 30
+                          ? Colors.deepPurple
+                          : Colors.pink,
+              fontSize: 20.sp,
+            ),
+          ),
+          Text(
+            '/',
+            style: TextStyle(
+              color: Colors.black54,
+              fontSize: 20.sp,
+            ),
+          ),
+          Text(
+            '$maxTemp˚C', //max temperature
+            style: TextStyle(
+              color: maxTemp <= 0
+                  ? Colors.blue
+                  : maxTemp > 0 && maxTemp <= 15
+                      ? Colors.indigo
+                      : maxTemp > 15 && maxTemp < 30
+                          ? Colors.deepPurple
+                          : Colors.pink,
+              fontSize: 20.sp,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  displayText(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: Colors.blueGrey,
+        fontSize: 20.sp,
+      ),
+    );
+  }
+
+  displayIcon(IconData icon) {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 10.sp,
+        ),
+        child: FaIcon(
+          icon,
+          color: Colors.black,
+          size: 22.sp,
         ),
       ),
     );

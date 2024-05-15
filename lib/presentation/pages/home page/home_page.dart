@@ -69,6 +69,8 @@ class _HomePageState extends State<HomePage> {
                       child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TypeAheadField<String>(
+                      hideOnLoading: true,
+                      hideKeyboardOnDrag: true,
                       suggestionsCallback: (search) => state.city
                           .where((item) =>
                               item.toLowerCase().contains(search.toLowerCase()))
@@ -90,7 +92,6 @@ class _HomePageState extends State<HomePage> {
                       },
                       onSelected: (city) {
                         context.read<WeatherCubit>().onSelected(city);
-                        // print(city);
                       },
                     ),
                   ));

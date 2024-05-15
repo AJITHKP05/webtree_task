@@ -27,7 +27,6 @@ class WeatherRepository {
             "Accept": "*/*",
             "X-Api-Key": "kNdezYSOlAcRomCK+4Ddrw==OPcBW6x8XiNeRguh"
           }));
-      // print(response.data);
       if (response.statusCode == 200) {
         data = Weather(
             windSpeed: response.data["wind_speed"],
