@@ -16,7 +16,9 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
   Future getCities() async {
     emit(WeatherCubitLoading());
     try {
-      cities = await repo.getCities();
+      if (cities.isEmpty) {
+        cities = await repo.getCities();
+      }
       emit(WeatherCubitCityFetch(cont, city: cities));
     } catch (e) {
       emit(WeatherError(

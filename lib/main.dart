@@ -16,19 +16,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
-      return GetMaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(color: AppColors.appWhite),
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.appWhite),
-          useMaterial3: true,
-        ),
-        home: BlocProvider<WeatherCubit>(
+      return BlocProvider<WeatherCubit>(
           create: (context) => WeatherCubit(),
-          child: HomePage(),
-        ),
-        debugShowCheckedModeBanner: false,
-      );
+          child: GetMaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              appBarTheme: const AppBarTheme(color: AppColors.appWhite),
+              colorScheme: ColorScheme.fromSeed(seedColor: AppColors.appWhite),
+              useMaterial3: true,
+            ),
+            home: HomePage(),
+            debugShowCheckedModeBanner: false,
+          ));
     });
   }
 }

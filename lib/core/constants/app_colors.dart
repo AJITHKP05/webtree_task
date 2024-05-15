@@ -6,5 +6,5 @@ class AppColors {
   static const appBlack = Colors.black;
   static const appPremium = Color.fromARGB(170, 130, 60, 1);
 
-  static const appDarkRed = Color.fromARGB(212, 61, 64, 1);
+  static const appBlue = Colors.blue;
 }

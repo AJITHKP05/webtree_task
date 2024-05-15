@@ -5,6 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:webtree_task/core/bloc%20pattern/weather_cubit/weather_cubit.dart';
 import 'package:webtree_task/presentation/pages/details%20page/details_page.dart';
 
+import '../../../core/bloc pattern/detail_cubit/detail_cubit.dart';
 import '../../common widgets/profile_avatar.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,59 +39,68 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          BlocConsumer<WeatherCubit, WeatherCubitState>(
-            listener: (context, state) {
-              if (state is WeatherCubitCitySelected) {
-                Get.off(DetailPage());
-              }
-            },
-            builder: (context, state) {
-              // print(state);
-              if (state is WeatherCubitLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (state is WeatherCubitCityFetch) {
-                return Center(
-                    child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TypeAheadField<String>(
-                    suggestionsCallback: (search) => state.city
-                        .where((item) =>
-                            item.toLowerCase().contains(search.toLowerCase()))
-                        .toList(),
-                    builder: (context, controller, focusNode) {
-                      return TextField(
-                          controller: controller,
-                          focusNode: focusNode,
-                          autofocus: true,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'City',
-                          ));
-                    },
-                    itemBuilder: (context, city) {
-                      return ListTile(
-                        title: Text(city),
-                      );
-                    },
-                    onSelected: (city) {
-                      context.read<WeatherCubit>().onSelected(city);
-                      // print(city);
-                    },
-                  ),
-                ));
-              }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context.read<WeatherCubit>().getCities();
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            BlocConsumer<WeatherCubit, WeatherCubitState>(
+              listener: (context, state) {
+                if (state is WeatherCubitCitySelected) {
+                  Get.off(() => BlocProvider(
+                        create: (context) => DetailCubit(),
+                        child: DetailPage(
+                            city: context.read<WeatherCubit>().selectedCity),
+                      ));
+                }
+              },
+              builder: (context, state) {
+                // print(state);
+                if (state is WeatherCubitLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state is WeatherCubitCityFetch) {
+                  return Center(
+                      child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TypeAheadField<String>(
+                      suggestionsCallback: (search) => state.city
+                          .where((item) =>
+                              item.toLowerCase().contains(search.toLowerCase()))
+                          .toList(),
+                      builder: (context, controller, focusNode) {
+                        return TextField(
+                            controller: controller,
+                            focusNode: focusNode,
+                            autofocus: true,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'City',
+                            ));
+                      },
+                      itemBuilder: (context, city) {
+                        return ListTile(
+                          title: Text(city),
+                        );
+                      },
+                      onSelected: (city) {
+                        context.read<WeatherCubit>().onSelected(city);
+                        // print(city);
+                      },
+                    ),
+                  ));
+                }
 
-              return Container();
-            },
-          )
-        ],
+                return Container();
+              },
+            )
+          ],
+        ),
       ),
     );
   }
