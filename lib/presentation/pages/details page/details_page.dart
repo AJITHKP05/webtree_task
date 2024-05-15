@@ -75,7 +75,7 @@ class _DetailPageState extends State<DetailPage> {
                 // var maxTemp = data. ?? 0;
                 // var currTemp = data.temp ?? 0;
                 return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       cityName(widget.city),
                       dateWidget(),
@@ -118,7 +118,7 @@ class _DetailPageState extends State<DetailPage> {
       padding: EdgeInsets.only(
         top: 4.sp,
       ),
-      child: Align(
+      child: Center(
         child: Text(
           city,
           style: TextStyle(

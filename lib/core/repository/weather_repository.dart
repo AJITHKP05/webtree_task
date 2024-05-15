@@ -23,10 +23,13 @@ class WeatherRepository {
     late Weather data;
     try {
       final response = await dio.get(AppUrl.weatherDetailUrl,
-          options: Options(headers: {
-            "Accept": "*/*",
-            "X-Api-Key": "kNdezYSOlAcRomCK+4Ddrw==OPcBW6x8XiNeRguh"
-          }));
+          options: Options(
+              headers: {
+                "Accept": "*/*",
+                "X-Api-Key": "kNdezYSOlAcRomCK+4Ddrw==OPcBW6x8XiNeRguh"
+              },
+              sendTimeout: const Duration(seconds: 10), // 60 seconds
+              receiveTimeout: const Duration(seconds: 10)));
       if (response.statusCode == 200) {
         data = Weather(
             windSpeed: response.data["wind_speed"],
